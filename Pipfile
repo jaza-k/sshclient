@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 Paramiko = "*"
 Loguru = "*"
+SCP = "*"
 Python-dotenv = "*"
 
 [requires]

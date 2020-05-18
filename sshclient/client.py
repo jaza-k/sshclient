@@ -59,7 +59,33 @@ class RemoteClient:
 
         self.client.close()
         self.scp.close()
-    
+
+    def bulk_upload(self, files):
+        """Upload multiple files to a remote directory."""
+
+        if self.client is None:
+            self.client = self.__connect()
+        uploads = [self.__upload_single_file(file) for files in files]
+        logger.info('Uploaded {len(uploads)} files to {self.remote_path} on {self.host}')
+
+    def __upload_single_file(self, file):
+        """Upload a single file to a remote directory."""
+
+        try:
+            self.scp.put(file, recursive=True, remote_path=self.remote_path)
+        except SCPException as error:
+            logger.error(error)
+            raise error
+        finally:
+            return file
+
+    def download_file(self, file):
+        """Download file from remote host."""
+
+        if self.conn is None:
+            self.conn = self.connect()
+        self.scp.get(file)
+
     def execute_commands(self, commands):
         """Execute multiple commands in succession."""
 
@@ -71,4 +97,3 @@ class RemoteClient:
             response = stdout.readLines()
             for line in response:
                 logger.info('INPUT: {cmd} | OUTPUT: {line}')
-
