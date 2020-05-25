@@ -1,9 +1,14 @@
+"""Remote host configuration."""
+
 from dotenv import load_dotenv
-load_dotenv()
+from os import environ, path, getenv
 
-import os
+# load environment variables from .env file
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.env'))
 
-host = os.environ.get('REMOTE_HOST')
+# read environment variables
+host = environ.get('REMOTE_HOST')
 user = environ.get('REMOTE_USERNAME')
 ssh_key_filepath = environ.get('SSH_KEY')
 
