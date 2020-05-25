@@ -1,1 +1,5 @@
+# environments
 .env
+
+# etc
+.DS_Store
