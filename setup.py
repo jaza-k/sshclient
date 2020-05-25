@@ -19,6 +19,5 @@ setup(
     author_email='jaza-k@protonmail.com',
     keywords='Paramiko SCP SSH Remote Automation',
     packages=find_packages(),
-    install_requires=['Paramiko', 'SCP', 'Loguru'],
-    extras_require={}
+    install_requires=['Paramiko', 'SCP', 'Loguru']
 )

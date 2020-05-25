@@ -1,6 +1,6 @@
 """Entry point."""
 
-from paramiko_tutorial import main
+from sshclient import main
 
 if __name__ == "__main__":
     main()
