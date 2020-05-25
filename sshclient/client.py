@@ -74,6 +74,7 @@ class RemoteClient:
         upload = None
         try:
             self.scp.put(file, recursive=True, remote_path=self.remote_path)
+            upload = file
         except SCPException as error:
             logger.error(error)
             raise error
