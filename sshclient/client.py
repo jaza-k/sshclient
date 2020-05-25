@@ -14,6 +14,7 @@ class RemoteClient:
         self.ssh_key_filepath = ssh_key_filepath
         self.remote_path = remote_path
         self.client = None # serves as the connection objection, None until explicitly connected to remote host
+        self.conn = None
         self.scp = None
         self._upload_ssh_key() # run function whenever client is instantiated
 
@@ -96,6 +97,6 @@ class RemoteClient:
         for cmd in commands:
             stdin, stdout, stderr = self.client.exec_command(cmd)
             stdout.channel.recv_exit_status()
-            response = stdout.readLines()
+            response = stdout.readlines()
             for line in response:
                 logger.info('INPUT: {cmd} | OUTPUT: {line}')

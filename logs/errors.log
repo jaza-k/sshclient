@@ -1,0 +1,84 @@
+[96m05-25-2020 00:44:08[0m | [91mERROR[0m: [97mAn error has been caught in function 'bulk_upload', process 'MainProcess' (16604), thread 'MainThread' (140053383239424):[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/[0m[32m[1mmain.py[0m", line [33m6[0m, in [35m<module>[0m
+    [1mmain[0m[1m([0m[1m)[0m
+    [36m└ [0m[36m[1m<function main at 0x7f60b81116a8>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m11[0m, in [35mmain[0m
+    [1mupload_files_to_remote[0m[1m([0m[1mremote[0m[1m)[0m
+    [36m│                      └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+    [36m└ [0m[36m[1m<function upload_files_to_remote at 0x7f60b50ae2f0>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m19[0m, in [35mupload_files_to_remote[0m
+    [1mremote[0m[35m[1m.[0m[1mbulk_upload[0m[1m([0m[1mfiles[0m[1m)[0m
+    [36m│      │           └ [0m[36m[1m['{root}/{file}', '{root}/{file}', '{root}/{file}'][0m
+    [36m│      └ [0m[36m[1m<function RemoteClient.bulk_upload at 0x7f60b1f79f28>[0m
+    [36m└ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+> File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1mclient.py[0m", line [33m68[0m, in [35mbulk_upload[0m
+    [1mself[0m[35m[1m.[0m[1mconn[0m [35m[1m=[0m [1mself[0m[35m[1m.[0m[1m_connect[0m[1m([0m[1m)[0m
+    [36m│           │    └ [0m[36m[1m<function RemoteClient._connect at 0x7f60b1f79b70>[0m
+    [36m│           └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+    [36m└ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1mclient.py[0m", line [33m44[0m, in [35m_connect[0m
+    [35m[1mif[0m [1mself[0m[35m[1m.[0m[1mconn[0m [35m[1mis[0m [36m[1mNone[0m[1m:[0m
+    [36m   └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+[31m[1mAttributeError[0m:[1m 'RemoteClient' object has no attribute 'conn'[0m
+[96m05-25-2020 00:44:09[0m | [91mERROR[0m: [97mAn error has been caught in function 'upload_files_to_remote', process 'MainProcess' (16604), thread 'MainThread' (140053383239424):[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/[0m[32m[1mmain.py[0m", line [33m6[0m, in [35m<module>[0m
+    [1mmain[0m[1m([0m[1m)[0m
+    [36m└ [0m[36m[1m<function main at 0x7f60b81116a8>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m11[0m, in [35mmain[0m
+    [1mupload_files_to_remote[0m[1m([0m[1mremote[0m[1m)[0m
+    [36m│                      └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+    [36m└ [0m[36m[1m<function upload_files_to_remote at 0x7f60b50ae2f0>[0m
+
+> File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m19[0m, in [35mupload_files_to_remote[0m
+    [1mremote[0m[35m[1m.[0m[1mbulk_upload[0m[1m([0m[1mfiles[0m[1m)[0m
+    [36m│      │           └ [0m[36m[1m['{root}/{file}', '{root}/{file}', '{root}/{file}'][0m
+    [36m│      └ [0m[36m[1m<function RemoteClient.bulk_upload at 0x7f60b1f79f28>[0m
+    [36m└ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1mclient.py[0m", line [33m69[0m, in [35mbulk_upload[0m
+    [1muploads[0m [35m[1m=[0m [1m[[0m[1mself[0m[35m[1m.[0m[1m_upload_single_file[0m[1m([0m[1mfile[0m[1m)[0m [35m[1mfor[0m [1mfiles[0m [35m[1min[0m [1mfiles[0m[1m][0m
+    [36m           │    │                             │        └ [0m[36m[1m['{root}/{file}', '{root}/{file}', '{root}/{file}'][0m
+    [36m           │    │                             └ [0m[36m[1m['{root}/{file}', '{root}/{file}', '{root}/{file}'][0m
+    [36m           │    └ [0m[36m[1m<function RemoteClient._upload_single_file at 0x7f60b1f7c268>[0m
+    [36m           └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1mclient.py[0m", line [33m69[0m, in [35m<listcomp>[0m
+    [1muploads[0m [35m[1m=[0m [1m[[0m[1mself[0m[35m[1m.[0m[1m_upload_single_file[0m[1m([0m[1mfile[0m[1m)[0m [35m[1mfor[0m [1mfiles[0m [35m[1min[0m [1mfiles[0m[1m][0m
+    [36m           │    │                             │        └ [0m[36m[1m'{root}/{file}'[0m
+    [36m           │    │                             └ [0m[36m[1m'{root}/{file}'[0m
+    [36m           │    └ [0m[36m[1m<function RemoteClient._upload_single_file at 0x7f60b1f7c268>[0m
+    [36m           └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+[31m[1mNameError[0m:[1m name 'file' is not defined[0m
+[96m05-25-2020 00:44:10[0m | [91mERROR[0m: [97mAn error has been caught in function 'execute_command_on_remote', process 'MainProcess' (16604), thread 'MainThread' (140053383239424):[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/[0m[32m[1mmain.py[0m", line [33m6[0m, in [35m<module>[0m
+    [1mmain[0m[1m([0m[1m)[0m
+    [36m└ [0m[36m[1m<function main at 0x7f60b81116a8>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m12[0m, in [35mmain[0m
+    [1mexecute_command_on_remote[0m[1m([0m[1mremote[0m[1m)[0m
+    [36m│                         └ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+    [36m└ [0m[36m[1m<function execute_command_on_remote at 0x7f60b1f7c6a8>[0m
+
+> File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1m__init__.py[0m", line [33m24[0m, in [35mexecute_command_on_remote[0m
+    [1mremote[0m[35m[1m.[0m[1mexecute_commands[0m[1m([0m[1m[[0m[36m'cd /var/www/ && ls'[0m[1m,[0m [36m'tail /var/log/nginx/access.log'[0m[1m,[0m [36m'ps aux | grep node'[0m[1m,[0m [36m'cd /uploads/ && ls'[0m[1m][0m[1m)[0m
+    [36m│      └ [0m[36m[1m<function RemoteClient.execute_commands at 0x7f60b1f7c400>[0m
+    [36m└ [0m[36m[1m<sshclient.client.RemoteClient object at 0x7f60b81a3908>[0m
+
+  File "[32m/home/jaza/workspaces/sshclient/sshclient/[0m[32m[1mclient.py[0m", line [33m99[0m, in [35mexecute_commands[0m
+    [1mresponse[0m [35m[1m=[0m [1mstdout[0m[35m[1m.[0m[1mreadLines[0m[1m([0m[1m)[0m
+    [36m           └ [0m[36m[1m<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0xb1f839e8 (cipher aes128-ctr, 128 bits) (a...[0m
+
+[31m[1mAttributeError[0m:[1m 'ChannelFile' object has no attribute 'readLines'[0m
