@@ -1,5 +1,8 @@
 # environments
 .env
 
+# byte-compiled / optimized / DLL files
+__pycache__/
+
 # etc
 .DS_Store
