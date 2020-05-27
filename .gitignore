@@ -3,6 +3,10 @@
 
 # byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
+*$py.class
+*.pyc
 
 # etc
 .DS_Store
+.vscode
