@@ -10,3 +10,4 @@ __pycache__/
 # etc
 .DS_Store
 .vscode
+logs/errors.log
