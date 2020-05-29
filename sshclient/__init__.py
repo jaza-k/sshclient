@@ -4,6 +4,8 @@ from config import (host, user, ssh_key_filepath, local_file_directory, remote_p
 from .files import fetch_local_files
 from .client import RemoteClient
 
+local_file_directory = '/home/jaza/workspaces/sshclient/data'
+
 def main():
     """Initialize remote host client and execute actions."""
 
