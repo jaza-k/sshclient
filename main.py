@@ -1,4 +1,4 @@
-"""Entry point."""
+"""Script entry point."""
 
 from sshclient import main
 
