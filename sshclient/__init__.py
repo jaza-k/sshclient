@@ -21,5 +21,6 @@ def upload_files_to_remote(remote):
 def execute_command_on_remote(remote):
     """Execute UNIX command on the remote host."""
 
+    # expects a list of strings as argument
     remote.execute_commands(['cd /Documents',
                              'touch test.txt'])

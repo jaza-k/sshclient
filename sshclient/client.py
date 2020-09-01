@@ -1,4 +1,5 @@
-import sys
+"""Client to handle connections and actions executed against a remote host."""
+
 from .log import logger
 from os import system
 from paramiko import SSHClient, AutoAddPolicy, RSAKey
@@ -6,7 +7,7 @@ from paramiko.auth_handler import AuthenticationException, SSHException
 from scp import SCPClient, SCPException
 
 class RemoteClient:
-    """Client to interact w/ a remote host wia SSH & SCP."""
+    """Client to interact w/ a remote host via SSH & SCP."""
 
     def __init__(self, host, user, ssh_key_filepath, remote_path):
         self.host = host
@@ -31,11 +32,12 @@ class RemoteClient:
 
     @logger.catch
     def _upload_ssh_key(self):
+        """Check for local SSH keys to pass to remote host."""
+
         try:
-            system('ssh-copy-id -i {self.ssh_key_filepath} {self.user}@{self.host}>/dev/null 2>&1')
-            system('ssh-copy-id -i {self.ssh_key_filepath}.pub {self.user}@{self.host}>/dev/null 2>&1')
+            system('ssh-copy-id -i {self.ssh_key_filepath}.pub {self.user}@{self.host}>/dev/null 2>&1') # pass bash command that uploads SSH key to remote machine
             logger.info('{self.ssh_key_filepath} uploaded to {self.host}')
-        except FileNotFound as error:
+        except FileNotFoundError as error:
             logger.error(error)
 
     @logger.catch
@@ -47,7 +49,7 @@ class RemoteClient:
                 self.client = SSHClient() # create an object representing SSH client
                 self.client.load_system_host_keys() # instruct client to look for known hosts
                 self.client.set_missing_host_key_policy(AutoAddPolicy()) # auto add a missing key locally
-                self.client.connect(self.host, username=self.user, key_filename=self.ssh_key_filepath, look_for_keys=True, timeout=5000)
+                self.client.connect(self.host, username=self.user, port=3056, key_filename=self.ssh_key_filepath, look_for_keys=True, timeout=5000)
                 self.scp = SCPClient(self.client.get_transport())
             except AuthenticationException as error:
                 logger.error('Authentication failed: did you remember to create an SSH key? {error}')
@@ -55,7 +57,7 @@ class RemoteClient:
         return self.client
 
     def disconnect(self):
-        """Close SSH connection."""
+        """Close SSH & SCP connection."""
 
         if self.client:
             self.client.close()
@@ -91,9 +93,9 @@ class RemoteClient:
 
     @logger.catch
     def execute_commands(self, commands):
-        """Execute multiple commands in succession."""
+        """Execute multiple commands on remote host in succession."""
 
-        self.client = self._connect()
+        self.conn = self._connect()
         for cmd in commands:
             stdin, stdout, stderr = self.client.exec_command(cmd)
             stdout.channel.recv_exit_status()
