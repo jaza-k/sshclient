@@ -1,10 +1,8 @@
 """Perform tasks against a remote host."""
 
-from config import (host, user, ssh_key_filepath, local_file_directory, remote_path)
+from config import ( host, user, ssh_key_filepath, local_file_directory, remote_path )
 from .files import fetch_local_files
 from .client import RemoteClient
-
-local_file_directory = '/home/jaza/workspaces/sshclient/data'
 
 def main():
     """Initialize remote host client and execute actions."""
@@ -17,10 +15,11 @@ def main():
 def upload_files_to_remote(remote):
     """Upload files to remote via SCP."""
 
-    files = fetch_local_files(local_file_directory)
-    remote.bulk_upload(files)
+    local_files = fetch_local_files(local_file_directory)
+    remote.bulk_upload(local_files)
 
 def execute_command_on_remote(remote):
     """Execute UNIX command on the remote host."""
 
-    remote.execute_commands(['cd /var/www/ && ls', 'tail /var/log/nginx/access.log', 'ps aux | grep node', 'cd /uploads/ && ls'])
+    remote.execute_commands(['cd /Documents',
+                             'touch test.txt'])
