@@ -7,4 +7,4 @@ def fetch_local_files(local_file_dir):
 
     local_files = os.walk(local_file_dir)
     for root, dirs, files in local_files:
-        return ['{root}/{file}' for file in files]
+        return [f'{root}/{file}' for file in files]

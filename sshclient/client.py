@@ -25,7 +25,7 @@ class RemoteClient:
 
         try:
             self.ssh_key = RSAKey.from_private_key_file(self.ssh_key_filepath)
-            logger.info('Found SSH key at self {self.ssh_key_filepath}')
+            logger.info(f'Found SSH key at self {self.ssh_key_filepath}')
         except SSHException as error:
             logger.error(error)
         return self.ssh_key
@@ -35,8 +35,8 @@ class RemoteClient:
         """Check for local SSH keys to pass to remote host."""
 
         try:
-            system('ssh-copy-id -i {self.ssh_key_filepath}.pub {self.user}@{self.host}>/dev/null 2>&1') # pass bash command that uploads SSH key to remote machine
-            logger.info('{self.ssh_key_filepath} uploaded to {self.host}')
+            system(f'ssh-copy-id -i {self.ssh_key_filepath}.pub {self.user}@{self.host}>/dev/null 2>&1') # pass bash command that uploads SSH key to remote machine
+            logger.info(f'{self.ssh_key_filepath} uploaded to {self.host}')
         except FileNotFoundError as error:
             logger.error(error)
 
@@ -52,7 +52,7 @@ class RemoteClient:
                 self.client.connect(self.host, username=self.user, port=3056, key_filename=self.ssh_key_filepath, look_for_keys=True, timeout=5000)
                 self.scp = SCPClient(self.client.get_transport())
             except AuthenticationException as error:
-                logger.error('Authentication failed: did you remember to create an SSH key? {error}')
+                logger.error(f'Authentication failed: did you remember to create an SSH key? {error}')
                 raise error
         return self.client
 
@@ -70,7 +70,7 @@ class RemoteClient:
 
         self.conn = self._connect()
         uploads = [self._upload_single_file(file) for file in files]
-        logger.info('Uploaded {len(uploads)} files to {self.remote_path} on {self.host}')
+        logger.info(f'Uploaded {len(uploads)} files to {self.remote_path} on {self.host}')
 
     def _upload_single_file(self, file):
         """Upload a single file to a remote directory."""
@@ -82,7 +82,7 @@ class RemoteClient:
             logger.error(error)
             raise error
         finally:
-            logger.info('Uploaded {file} to {self.remote_path}')
+            logger.info(f'Uploaded {file} to {self.remote_path}')
             return upload
 
     def download_file(self, file):
@@ -101,4 +101,4 @@ class RemoteClient:
             stdout.channel.recv_exit_status()
             response = stdout.readlines()
             for line in response:
-                logger.info('INPUT: {cmd} | OUTPUT: {line}')
+                logger.info(f'INPUT: {cmd} | OUTPUT: {line}')
