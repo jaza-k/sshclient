@@ -111,4 +111,3 @@ celerybeat-schedule
 logs/errors.log
 .idea
 .github
-/img/
