@@ -2,11 +2,13 @@
 
 Python script to automate tasks on a remote machine through SSH/SCP.
 
+![Demo Image](./img/demo.png)
+
 ## Installation
 
 Clone this repository using ```git clone https://github.com/jaza-k/sshclient.git```\
 Create a virtual environment with ```python3 -m venv myenv```\
-Run ```pip3 install -r requirements.txt``` to install the required dependencies\
+Run ```pip3 install -r requirements.txt``` to install the required dependencies
 
 ## Usage
 
@@ -16,3 +18,5 @@ Modify the environment variables in the **.env.example** file and rename it to *
 * `REMOTE_USERNAME`: Username for remote host
 * `SSH_KEY`: /path/to/remote/host/sshkey
 * `REMOTE_PATH`: Remote directory to serve as destination for file uploads
+
+Run the script with ```python3 main.py```
